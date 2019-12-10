@@ -1,30 +1,44 @@
 <?php
 class StringProcessor {
-	function capitalize($words) {
-		return strtoupper($words);
-	}
-
-	function capitalizeAlternate($words) {
-		$letter_count = 0;
-		$result = '';
-		for ($i=0; $i<strlen($words); $i++) {
-		    if (!preg_match('![a-zA-Z ]!', $words[$i])) {
-		        $result .= $words[$i];
-		    } else if ($letter_count++ & 1) {
-		        $result .= strtoupper($words[$i]);
-		    } else {
-		        $result .= $words[$i];
-		    }
+	function capitalize($string) {
+		$string = trim($string);
+		if (strlen($string) > 0) {
+			return strtoupper($string);
 		}
-		return $result;
+		return 'No string passed';
 	}
 
-	function createCSVFile($words) {
-		$data = str_split($words);
-		$fp = fopen("string.csv", 'w');
-	  	fputs($fp, implode($data, ',')."\n");
-		fclose($fp);
-		return "CSV created!";
+	function capitalizeAlternate($string) {
+		$string = trim($string);
+		if (strlen($string) > 0) {
+			$letter_count = 0;
+			$result = '';
+
+			for ($i=0; $i<strlen($string); $i++) {
+			    if (!preg_match('![a-zA-Z ]!', $string[$i])) {
+			        $result .= $string[$i];
+			    } else if ($letter_count++ & 1) {
+			        $result .= strtoupper($string[$i]);
+			    } else {
+			        $result .= $string[$i];
+			    }
+			}
+
+			return $result;
+		}
+		return 'No string passed';
+	}
+
+	function createCSVFile($string) {
+		$string = trim($string);
+		if (strlen($string) > 0) {
+			$data = str_split($string);
+			$file = fopen("string.csv", 'w');
+		  	fputs($file, implode($data, ','));
+			fclose($file);
+			return "CSV created!";
+		}
+		return 'No string passed';
 	}
 
 }

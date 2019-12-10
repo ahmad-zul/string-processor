@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 	<head>
+		<title>String Processor</title>
 	</head>
 	<body>
 		<h1>String Processor</h1>

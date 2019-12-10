@@ -16,20 +16,30 @@ class StringProcessorTest extends TestCase
         $this->stringProcessor = NULL;
     }
 
-    // Tests for capitalize function
+    /*
+    * Tests for capitalize function
+    */
     public function testCapitalizeSuccess()
     {
         $result = $this->stringProcessor->capitalize("hello world");
         $this->assertEquals("HELLO WORLD", $result);
     }
 
-    public function testCapitalizeFaile()
+    public function testCapitalizeFail()
     {
         $result = $this->stringProcessor->capitalize("hello world");
         $this->assertNotEquals("hello world", $result);
     }
 
-    // Tests for capitalizeAlternate function
+    public function testCapitalizeNoString()
+    {
+        $result = $this->stringProcessor->capitalize("");
+        $this->assertEquals("No string passed", $result);
+    }
+
+    /*
+    * Tests for capitalizeAlternate function
+    */
     public function testCapitalizeAlternateSuccess()
     {
         $result = $this->stringProcessor->capitalizeAlternate("hello world");
@@ -39,14 +49,28 @@ class StringProcessorTest extends TestCase
     public function testCapitalizeAlternateFail()
     {
         $result = $this->stringProcessor->capitalizeAlternate("hello world");
-        $this->assertEquals("hElLo wOrLd", $result);
+        $this->assertNotEquals("hello world", $result);
     }
 
-    // Tests for createCSVFile function
+    public function testCapitalizeAlternateNoString()
+    {
+        $result = $this->stringProcessor->capitalizeAlternate("");
+        $this->assertEquals("No string passed", $result);
+    }
+
+    /*
+    * Tests for createCSVFile function
+    */
     public function testCreateCSVFileSuccess()
     {
         $result = $this->stringProcessor->createCSVFile("hello world");
         $this->assertEquals("CSV created!", $result);
+    }
+
+    public function testCreateCSVFileNoString()
+    {
+        $result = $this->stringProcessor->createCSVFile("");
+        $this->assertEquals("No string passed", $result);
     }
 
     public function testCreateCSVFileCheckForFileExistence()
